@@ -1,0 +1,849 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Inleiding tot Java EE met de NetBeans IDE en de GlassFish-applicatieserver">
+      
+      
+        <meta name="author" content="Serge Tahé">
+      
+      
+        <link rel="canonical" href="https://stahe.github.io/nl-javaee-juin-2012/laaggebaseerde-architectuur-van-een-java-toepassing.html">
+      
+      
+        <link rel="prev" href="inleiding.html">
+      
+      
+        <link rel="next" href="de-tools-in-het-document.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>2. Laaggebaseerde architectuur van een Java-toepassing - Inleiding tot Java EE met de NetBeans IDE en de GlassFish-applicatieserver</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/focus.css">
+    
+      <link rel="stylesheet" href="stylesheets/bidi.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EBZC3JVJNR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    var siteName = "Inleiding tot Java EE met de NetBeans IDE en de GlassFish-applicatieserver";
+    gtag('config', 'G-EBZC3JVJNR', {
+        'page_title': siteName
+    });
+  </script>
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#2-laaggebaseerde-architectuur-van-een-java-toepassing" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="Inleiding tot Java EE met de NetBeans IDE en de GlassFish-applicatieserver" class="md-header__button md-logo" aria-label="Inleiding tot Java EE met de NetBeans IDE en de GlassFish-applicatieserver" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Inleiding tot Java EE met de NetBeans IDE en de GlassFish-applicatieserver
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              2. Laaggebaseerde architectuur van een Java-toepassing
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="Overschakelen naar donkere modus"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Overschakelen naar donkere modus" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="Overschakelen naar lichte modus"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Overschakelen naar lichte modus" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://stahe.github.io/nl-javaee-juin-2012" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="Inleiding tot Java EE met de NetBeans IDE en de GlassFish-applicatieserver" class="md-nav__button md-logo" aria-label="Inleiding tot Java EE met de NetBeans IDE en de GlassFish-applicatieserver" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Inleiding tot Java EE met de NetBeans IDE en de GlassFish-applicatieserver
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://stahe.github.io/nl-javaee-juin-2012" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WelKom
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="inleiding.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Inleiding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="laaggebaseerde-architectuur-van-een-java-toepassing.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Laaggebaseerde architectuur van een Java-toepassing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="de-tools-in-het-document.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. De tools in het document
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="jpa--een-samenvatting.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. JPA : een samenvatting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="versie-1-spring-architectuur--jpa.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Versie 1: Spring-architectuur / JPA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="versie-2-architectuur-openejb--jpa.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Versie 2: Architectuur OpenEJB / JPA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="versie-3-porting-van-de-applicatie-pam-naar-een-glassfish-applicatieserver.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Versie 3: Porting van de applicatie PAM naar een Glassfish-applicatieserver
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="versie-4---clientserver-in-een-webservice-architectuur.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Versie 4 – client/server in een webservice-architectuur
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="inleiding-tot-java-server-faces.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. Inleiding tot Java Server Faces
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="versie-5---webapplicatie-pam--jsf.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. Versie 5 - Webapplicatie PAM / JSF
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="versie-6---integratie-van-de-weblaag-in-een-drielaagse-architectuur-jsf--ejb.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. Versie 6 - Integratie van de weblaag in een drielaagse architectuur JSF / EJB
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="versie-7---webapplicatie-pam-met-meerdere-weergaven--meerdere-paginas.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. Versie 7 - Webapplicatie PAM met meerdere weergaven / meerdere pagina’s
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="versie-8-porting-van-de-applicatie-naar-een-springtomcat-omgeving.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13. Versie 8: Porting van de applicatie naar een Spring/Tomcat-omgeving
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="versie-9-implementatie-van-de-weblaag-met-primefaces.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14. Versie 9: Implementatie van de weblaag met Primefaces
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<p><span id="architecture-en-couches" name="architecture-en-couches" class="odt-bookmark-anchor"></span>
+<span id="refheading87347112820228" name="refheading87347112820228" class="odt-bookmark-anchor"></span></p>
+<h1 id="2-laaggebaseerde-architectuur-van-een-java-toepassing">2. <span style="color: #365f91">Laaggebaseerde architectuur van een Java-toepassing</span></h1>
+<p>Een Java-applicatie wordt vaak opgedeeld in lagen, die elk een duidelijk omschreven rol hebben. Laten we eens kijken naar een veelvoorkomende architectuur, namelijk de drielaagse architectuur:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000006E80000011C9BFD876E.png" width="680" height="109" style="display:inline-block; margin:4px;width:17.999cm;height:2.891cm;" class="odt-zoomable" data-zoom-src="images/10000000000006E80000011C9BFD876E.png" /></td></tr></table>
+
+<ul>
+  <li>De laag [1], hier [ui] (User Interface) genoemd, is de laag die met de gebruiker communiceert via een grafische Swing-interface, een console-interface of een webinterface. Haar rol is om gegevens van de gebruiker door te geven aan de laag [2] of om gegevens die door de laag [2] worden aangeleverd, aan de gebruiker te presenteren.
+  </li>
+  <li>De laag [2], hier [metier] genoemd, is de laag die de zogenaamde bedrijfsregels, c.a.d, toepast. de specifieke logica van de applicatie, zonder zich af te vragen waar de gegevens vandaan komen die eraan worden doorgegeven, noch waar de resultaten naartoe gaan die ze produceert.
+  </li>
+  <li>de laag [3], hier [DAO] (Data Access Object) genoemd, is de laag die de laag [2] voorziet van vooraf opgeslagen gegevens (bestanden, databases, ...) en die bepaalde resultaten opslaat die door de laag [2] worden geleverd.
+  </li>
+</ul>
+
+<p>Er zijn verschillende mogelijkheden om de laag [DAO] te implementeren. Laten we er een paar bekijken:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000074E000001438203730E.png" width="680" height="117" style="display:inline-block; margin:4px;width:17.999cm;height:3.108cm;" class="odt-zoomable" data-zoom-src="images/100000000000074E000001438203730E.png" /></td></tr></table>
+
+<p>De hierboven genoemde laag [JDBC] is de standaardlaag die in Java wordt gebruikt om toegang te krijgen tot databases. Deze laag scheidt de laag [DAO] van de laag SGBD, die de database beheert. Theoretisch is het mogelijk om van SGBD te wisselen zonder de code van de laag [DAO] te wijzigen. Ondanks dit voordeel heeft de API JDBC enkele nadelen:</p>
+<ul>
+  <li>alle bewerkingen op de SGBD kunnen de gecontroleerde uitzondering (checked) SQLException activeren. Dit dwingt de aanroepende code (hier de laag [DAO]) om deze te omringen met try/catch-blokken, waardoor de code vrij omvangrijk wordt.
+  </li>
+  <li>de laag [DAO] is niet volledig onafhankelijk van de laag SGBD. Deze hebben bijvoorbeeld eigen methoden voor het automatisch genereren van primaire sleutelwaarden die de laag [DAO] niet kan negeren. Bij het invoegen van een record:
+    <ul>
+      <li>met Oracle moet de laag [DAO] eerst een waarde voor de primaire sleutel van het record ophalen en dit vervolgens invoegen.
+      </li>
+      <li>bij SQL Server voegt de laag [DAO] het record in, waaraan automatisch een primaire sleutelwaarde wordt toegekend door de laag SGBD; deze waarde wordt vervolgens doorgegeven aan de laag [DAO].
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>Deze verschillen kunnen worden weggewerkt door gebruik te maken van opgeslagen procedures. In het vorige voorbeeld roept de laag [DAO] een opgeslagen procedure aan in Oracle of SQL Server, die rekening houdt met de specifieke kenmerken van de SGBD. Deze worden verborgen voor de laag [DAO]. Hoewel het wijzigen van SGBD niet betekent dat de laag [DAO] herschreven moet worden, houdt het wel in dat de opgeslagen procedures herschreven moeten worden. Dit hoeft niet als een onoverkomelijk probleem te worden beschouwd.</p>
+<p>Er zijn talrijke pogingen ondernomen om de laag [DAO] te isoleren van de propriëtaire aspecten van SGBD. Een oplossing die de afgelopen jaren op dit gebied zeer succesvol is gebleken, is die <strong>van Hibernate</strong>:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000074F0000011BD92904A5.png" width="680" height="103" style="display:inline-block; margin:4px;width:17.999cm;height:2.722cm;" class="odt-zoomable" data-zoom-src="images/100000000000074F0000011BD92904A5.png" /></td></tr></table>
+
+<p>De [Hibernate]-laag wordt geplaatst tussen de door de ontwikkelaar geschreven [DAO]-laag en de [JDBC]-laag. Hibernate is een ORM (Object Relational Mapper), een tool die een brug slaat tussen de relationele wereld van databases en die van de objecten die door Java worden beheerd. De ontwikkelaar van de [DAO]-laag ziet noch de [JDBC]-laag, noch de tabellen van de database waarvan hij de inhoud wil benutten. Hij ziet alleen het objectbeeld van de database, een objectbeeld dat wordt geleverd door de [Hibernate]-laag. De koppeling tussen de tabellen van de database en de objecten die door de laag [DAO] worden beheerd, wordt voornamelijk op twee manieren tot stand gebracht:</p>
+<ul>
+  <li>via configuratiebestanden van het type XML
+  </li>
+  <li>via Java-annotaties in de code, een techniek die pas beschikbaar is sinds JDK 1.5
+  </li>
+</ul>
+
+<p>De [Hibernate]-laag is een abstractielaag die zo transparant mogelijk wil zijn. Het streefdoel is dat de ontwikkelaar van de [DAO]-laag volledig kan negeren dat hij met een database werkt. Dit is haalbaar als hij niet zelf de configuratie schrijft die de brug vormt tussen de relationele en de objectwereld. De configuratie van deze brug is vrij delicaat en vereist enige ervaring.</p>
+<p>De objectlaag [4], die een afspiegeling is van de BD, wordt de „persistentiecontext“ genoemd. Een [DAO]-laag die op Hibernate is gebaseerd, voert persistentieacties (CRUD: create – read – update – delete) uit op de objecten van de persistentiecontext, acties die door Hibernate worden omgezet in SQL-opdrachten die worden uitgevoerd door de JDBC-laag. Voor acties waarbij de database wordt opgevraagd (de SQL Select), biedt Hibernate de ontwikkelaar een taal (Hibernate Query Language) om de persistentiecontext te doorzoeken, en niet de database zelf.</p>
+<p>Hibernate is populair, maar moeilijk onder de knie te krijgen. De leercurve, die vaak als eenvoudig wordt voorgesteld, is in werkelijkheid behoorlijk steil. Zodra je te maken hebt met een database met tabellen die één-op-veel- of veel-op-veel-relaties hebben, is het configureren van de relationeel-naar-object-brug niet iets voor de eerste de beste beginner. Configuratiefouten kunnen leiden tot slecht presterende applicaties.</p>
+<p>Gezien het succes van de ORM-producten, heeft Sun, de maker van Java, besloten om een ORM-laag te standaardiseren via een specificatie genaamd JPA (Java Persistence API), die tegelijk met Java 5 verscheen. De specificatie JPA is door verschillende producten geïmplementeerd: <strong>Hibernate</strong>, <strong>Toplink, EclipseLink, OpenJpa, ...</strong> Met JPA ziet de architectuur er als volgt uit:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000007BC0000012E769EA268.png" width="680" height="104" style="display:inline-block; margin:4px;width:17.999cm;height:2.745cm;" class="odt-zoomable" data-zoom-src="images/10000000000007BC0000012E769EA268.png" /></td></tr></table>
+
+<p>De laag [DAO] communiceert nu met de specificatie JPA, een reeks interfaces. De ontwikkelaar heeft hierdoor gewonnen aan standaardisatie. Vroeger moest hij, als hij zijn laag ORM wijzigde, ook zijn laag [DAO] aanpassen, die was geschreven om te communiceren met een specifieke ORM. Nu schrijft hij een laag [DAO] die zal communiceren met een laag JPA. Ongeacht welk product deze laag implementeert, blijft de interface van de laag JPA die aan de laag [DAO] wordt aangeboden, hetzelfde.</p>
+<p>In dit document gebruiken we een laag [DAO] die is gebaseerd op een laag JPA/Hibernate of JPA/EclipseLink. Daarnaast zullen we het Spring 2.8-framework gebruiken om deze lagen aan elkaar te koppelen.</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000008410000017C07262FF8.png" width="680" height="122" style="display:inline-block; margin:4px;width:17.999cm;height:3.237cm;" class="odt-zoomable" data-zoom-src="images/10000000000008410000017C07262FF8.png" /></td></tr></table>
+
+<p>Het grote voordeel van Spring is dat het mogelijk maakt om de lagen via configuratie te koppelen en niet in de code. Als de implementatie JPA / Hibernate moet worden vervangen door een Hibernate-implementatie zonder JPA, bijvoorbeeld omdat de applicatie draait in een JDK 1.4-omgeving die JPA niet ondersteunt, deze wijziging in de implementatie van de [DAO]-laag heeft geen invloed op de code van de [métier]-laag. Alleen het Spring-configuratiebestand dat de lagen met elkaar verbindt, moet worden aangepast.</p>
+<p>Met Java EE 5 bestaat er een andere oplossing: de lagen [metier] en [DAO] implementeren met EJB3 (Enterprise Java Bean versie 3):</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000008360000018F24F4901E.png" width="680" height="129" style="display:inline-block; margin:4px;width:17.999cm;height:3.417cm;" class="odt-zoomable" data-zoom-src="images/10000000000008360000018F24F4901E.png" /></td></tr></table>
+
+<p>We zullen zien dat deze oplossing niet veel verschilt van die waarbij Spring wordt gebruikt. De Java-omgeving EE5 is beschikbaar binnen zogenaamde applicatieservers zoals <em>Sun Application Server 9.x (Glassfish), JBoss Application Server, Oracle Container for Java (OC4J),</em> ... Een applicatieserver is in wezen een webserver. Er bestaan ook zogenaamde „stand-alone“ omgevingen, EE 5, c.a.d. die buiten een applicatieserver kunnen worden gebruikt. Dit is het geval bij JBoss, EJB3 of OpenEJB.</p>
+<p>In een EE5-omgeving worden de lagen geïmplementeerd door objecten die EJB (Enterprise Java Bean) worden genoemd. In eerdere versies van EE stonden de EJB (EJB 2.x) bekend als moeilijk te implementeren, te testen en soms weinig performant. Er wordt onderscheid gemaakt tussen de EJB2.x „entity” en de EJB2.x „session”. Kort gezegd is een EJB2.x &quot;entity&quot; de weergave van een rij in een databasetabel en een EJB2.x &quot;session&quot; een object dat wordt gebruikt om de [metier]-lagen te implementeren, [DAO] van een meerlaagse architectuur te implementeren. Een van de belangrijkste punten van kritiek op de met EJB geïmplementeerde lagen is dat ze alleen bruikbaar zijn binnen EJB-containers, een dienst die wordt geleverd door de EE-omgeving. Deze omgeving, die complexer is om te implementeren dan een SE-omgeving (Standard Edition), kan de ontwikkelaar ervan weerhouden om regelmatig tests uit te voeren. Toch bestaan er Java-ontwikkelomgevingen die het gebruik van een applicatieserver vergemakkelijken door de implementatie van EJB op de server te automatiseren: <em>Eclipse, NetBeans, JDeveloper, IntelliJ en IDEA</em>. We zullen hier <em>NetBeans 6.8</em> en de <em>GlassFish</em>-applicatieserver <em>v3</em> gebruiken.</p>
+<p><strong>Het Spring-framework</strong> is ontstaan als reactie op de complexiteit van EJB2. Spring biedt in een SE-omgeving een groot aantal diensten die doorgaans door EE-omgevingen worden geleverd. Zo biedt Spring in het onderdeel „Gegevenspersistentie“ de verbindingspools en transactiebeheerders die applicaties nodig hebben. De opkomst van Spring heeft de cultuur van unit-tests bevorderd, die in de SE-context eenvoudiger te implementeren zijn geworden dan in de EE-context. Spring maakt het mogelijk de lagen van een applicatie te implementeren met behulp van klassieke Java-objecten (POJO, Plain Old/Ordinary Java Object), waardoor deze in een andere context kunnen worden hergebruikt.  Ten slotte integreert het op vrij transparante wijze talrijke tools van derden, met name persistentietools zoals Hibernate, EclipseLink, Ibatis, ...  </p>
+<p>Java EE5 is ontworpen om de tekortkomingen van de EJB2-specificatie te verhelpen. De EJB 2.x zijn de EJB3 geworden. Dit zijn POJOs-objecten die zijn voorzien van annotaties waardoor ze speciale objecten worden wanneer ze zich in een EJB3-container bevinden. Binnen deze container kan de EJB3 gebruikmaken van de diensten van de container (verbindingspool, transactiebeheerder, ...). Buiten de container EJB3 wordt het EJB3-object een normaal Java-object. De bijbehorende annotaties EJB worden genegeerd.</p>
+<p>Hierboven hebben we Spring en een EJB3-container weergegeven als mogelijke infrastructuur (framework) voor onze meerlaagse architectuur. Deze infrastructuur levert de diensten die we nodig hebben: een verbindingspool en een transactiebeheerder.</p>
+<ul>
+  <li>Met Spring worden de lagen geïmplementeerd met POJOs. Deze krijgen toegang tot de diensten van Spring (verbindingspool, transactiebeheerder) door middel van afhankelijkheidsinjectie in deze POJOs: tijdens het aanmaken ervan injecteert Spring er verwijzingen in naar de diensten die ze nodig zullen hebben.
+  </li>
+  <li>Met de EJB3-container worden de lagen geïmplementeerd met EJB. Een gelaagde architectuur die is geïmplementeerd met EJB3 verschilt nauwelijks van die welke is geïmplementeerd met POJO die door Spring worden geïnstantieerd. We zullen veel overeenkomsten aantreffen.
+  </li>
+</ul>
+
+<ul>
+  <li>Tot slot zullen we een voorbeeld van een meerlaagse webapplicatie presenteren:
+  </li>
+</ul>
+
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000082A000001A616D6D841.png" width="680" height="137" style="display:inline-block; margin:4px;width:17.999cm;height:3.634cm;" class="odt-zoomable" data-zoom-src="images/100000000000082A000001A616D6D841.png" /></td></tr></table>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner">
+
+      <div>
+        <a href="https://stahe.github.io" target="_blank">
+          https://stahe.github.io
+        </a>
+        <br>
+        Deze cursus-tutorial, geschreven door <strong>Serge Tahé</strong>, wordt aan het publiek ter beschikking gesteld onder de voorwaarden van de
+        <em>Creative Commons Naamsvermelding – Geen commercieel gebruik –
+        Gelijk delen 3.0 ongewijzigd</em>.
+
+      </div>
+
+    </div>
+  </div>
+
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.sections", "navigation.indexes", "navigation.expand", "toc.integrate", "navigation.top"], "search": "assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="javascripts/focus.js"></script>
+      
+    
+  </body>
+</html>

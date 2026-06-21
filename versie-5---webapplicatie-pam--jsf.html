@@ -1,0 +1,1597 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Inleiding tot Java EE met de NetBeans IDE en de GlassFish-applicatieserver">
+      
+      
+        <meta name="author" content="Serge Tahé">
+      
+      
+        <link rel="canonical" href="https://stahe.github.io/nl-javaee-juin-2012/versie-5---webapplicatie-pam--jsf.html">
+      
+      
+        <link rel="prev" href="inleiding-tot-java-server-faces.html">
+      
+      
+        <link rel="next" href="versie-6---integratie-van-de-weblaag-in-een-drielaagse-architectuur-jsf--ejb.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>10. Versie 5 - Webapplicatie PAM / JSF - Inleiding tot Java EE met de NetBeans IDE en de GlassFish-applicatieserver</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/focus.css">
+    
+      <link rel="stylesheet" href="stylesheets/bidi.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EBZC3JVJNR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    var siteName = "Inleiding tot Java EE met de NetBeans IDE en de GlassFish-applicatieserver";
+    gtag('config', 'G-EBZC3JVJNR', {
+        'page_title': siteName
+    });
+  </script>
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#10-versie-5-webapplicatie-pam-jsf" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="Inleiding tot Java EE met de NetBeans IDE en de GlassFish-applicatieserver" class="md-header__button md-logo" aria-label="Inleiding tot Java EE met de NetBeans IDE en de GlassFish-applicatieserver" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Inleiding tot Java EE met de NetBeans IDE en de GlassFish-applicatieserver
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              10. Versie 5 - Webapplicatie PAM / JSF
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="Overschakelen naar donkere modus"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Overschakelen naar donkere modus" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="Overschakelen naar lichte modus"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Overschakelen naar lichte modus" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://stahe.github.io/nl-javaee-juin-2012" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="Inleiding tot Java EE met de NetBeans IDE en de GlassFish-applicatieserver" class="md-nav__button md-logo" aria-label="Inleiding tot Java EE met de NetBeans IDE en de GlassFish-applicatieserver" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Inleiding tot Java EE met de NetBeans IDE en de GlassFish-applicatieserver
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://stahe.github.io/nl-javaee-juin-2012" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WelKom
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="inleiding.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Inleiding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="laaggebaseerde-architectuur-van-een-java-toepassing.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Laaggebaseerde architectuur van een Java-toepassing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="de-tools-in-het-document.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. De tools in het document
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="jpa--een-samenvatting.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. JPA : een samenvatting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="versie-1-spring-architectuur--jpa.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Versie 1: Spring-architectuur / JPA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="versie-2-architectuur-openejb--jpa.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Versie 2: Architectuur OpenEJB / JPA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="versie-3-porting-van-de-applicatie-pam-naar-een-glassfish-applicatieserver.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Versie 3: Porting van de applicatie PAM naar een Glassfish-applicatieserver
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="versie-4---clientserver-in-een-webservice-architectuur.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Versie 4 – client/server in een webservice-architectuur
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="inleiding-tot-java-server-faces.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. Inleiding tot Java Server Faces
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. Versie 5 - Webapplicatie PAM / JSF
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="versie-5---webapplicatie-pam--jsf.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. Versie 5 - Webapplicatie PAM / JSF
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#101-architectuur-van-de-applicatie" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.1. Architectuur van de applicatie
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#102-werking-van-de-applicatie" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.2. Werking van de applicatie
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#103-het-netbeans-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.3. Het NetBeans-project
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10.3. Het NetBeans-project">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1031-de-configuratiebestanden" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.3.1. De configuratiebestanden
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1032-het-stylesheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.3.2. Het stylesheet
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1033-het-berichtenbestand" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.3.3. Het berichtenbestand
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1034-het-bereik-van-de-beans" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.3.4. Het bereik van de beans
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1035-de-laag-metier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.3.5. De laag [métier]
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#104-het-formulier-indexxhtml-en-het-bijbehorende-sjabloon-formjava" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.4. Het formulier [index.xhtml] en het bijbehorende sjabloon [Form.java]
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10.4. Het formulier [index.xhtml] en het bijbehorende sjabloon [Form.java]">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1041-stap-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.4.1. stap 1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1042-stap-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.4.2. stap 2
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1043-stap-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.4.3. stap 3
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1044-stap-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.4.4. stap 4
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="versie-6---integratie-van-de-weblaag-in-een-drielaagse-architectuur-jsf--ejb.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. Versie 6 - Integratie van de weblaag in een drielaagse architectuur JSF / EJB
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="versie-7---webapplicatie-pam-met-meerdere-weergaven--meerdere-paginas.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. Versie 7 - Webapplicatie PAM met meerdere weergaven / meerdere pagina’s
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="versie-8-porting-van-de-applicatie-naar-een-springtomcat-omgeving.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13. Versie 8: Porting van de applicatie naar een Spring/Tomcat-omgeving
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="versie-9-implementatie-van-de-weblaag-met-primefaces.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14. Versie 9: Implementatie van de weblaag met Primefaces
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<p><span id="refheading87541112820228" name="refheading87541112820228" class="odt-bookmark-anchor"></span></p>
+<h1 id="10-versie-5-webapplicatie-pam-jsf">10. <span style="color: #365f91">Versie 5 - Webapplicatie PAM / JSF</span></h1>
+<p><span id="refheading87543112820228" name="refheading87543112820228" class="odt-bookmark-anchor"></span></p>
+<h2 id="101-architectuur-van-de-applicatie">10.1. <span style="color: #4f81bd">Architectuur van de applicatie</span></h2>
+<p>De architectuur van de webapplicatie PAM ziet er als volgt uit:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/1000000000000544000001171F339ED5.png" width="674" height="140" style="display:inline-block; margin:4px;width:17.833cm;height:3.692cm;" class="odt-zoomable" data-zoom-src="images/1000000000000544000001171F339ED5.png" /></td></tr></table>
+
+<p>In deze versie zal de Glassfish-server alle lagen van de applicatie hosten:</p>
+<ul>
+  <li>de laag [web] wordt gehost door de servletcontainer van de server (1 hieronder)
+  </li>
+  <li>de overige lagen [metier, DAO, jpa] worden gehost door de EJB3-container van de server (2 hieronder)
+  </li>
+</ul>
+
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000004CE000000B0EAA6A0E4.png" width="615" height="88" style="display:inline-block; margin:4px;width:16.272cm;height:2.328cm;" class="odt-zoomable" data-zoom-src="images/10000000000004CE000000B0EAA6A0E4.png" /></td></tr></table>
+
+<p>De [metier, DAO]-elementen van de applicatie die in de container EJB3 draaien, zijn al beschreven in de client/server-applicatie die in paragraaf<a href="versie-3-porting-van-de-applicatie-pam-naar-een-glassfish-applicatieserver.html#serveur-ejb-sunas9"><u><span style="color: #0563c1"> 7.1</span></u></a> is behandeld en waarvan de architectuur als volgt was:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000050F0000012365A8B684.png" width="648" height="146" style="display:inline-block; margin:4px;width:17.133cm;height:3.851cm;" class="odt-zoomable" data-zoom-src="images/100000000000050F0000012365A8B684.png" /></td></tr></table>
+
+<p>De lagen [metier, DAO] draaiden in de container EJB3 van de Glassfish-server en de laag [ui] in een console- of Swing-toepassing op een andere machine:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000004E1000000BCC0FA4112.png" width="625" height="94" style="display:inline-block; margin:4px;width:16.524cm;height:2.487cm;" class="odt-zoomable" data-zoom-src="images/10000000000004E1000000BCC0FA4112.png" /></td></tr></table>
+
+<p>In de architectuur van de nieuwe applicatie:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000004DD000000AE898F8953.png" width="623" height="87" style="display:inline-block; margin:4px;width:16.471cm;height:2.302cm;" class="odt-zoomable" data-zoom-src="images/10000000000004DD000000AE898F8953.png" /></td></tr></table>
+
+<p>hoeft alleen de laag [web / jsf] te worden geschreven. De andere lagen [metier, DAO, jpa] zijn al aanwezig.</p>
+<p>In het document [<a href="https://stahe.github.io/nl-jsf2-pf-pfm-juin-2012/">ref3</a>] wordt aangetoond dat een webapplicatie waarbij de weblaag is geïmplementeerd met Java Server Faces een architectuur heeft die vergelijkbaar is met de volgende:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000046300000167CE12FF28.png" width="562" height="180" style="display:inline-block; margin:4px;width:14.857cm;height:4.75cm;" class="odt-zoomable" data-zoom-src="images/100000000000046300000167CE12FF28.png" /></td></tr></table>
+
+<p>Deze architectuur implementeert het <em>ontwerppatroon</em> <strong>MVC</strong> (Model, View, Controller). De verwerking van een verzoek van een klant verloopt als volgt:</p>
+<p>Als het verzoek wordt gedaan met een <strong>GET</strong>, worden de volgende twee stappen uitgevoerd:</p>
+<ol>
+  <li><b>verzoek </b>– de browser van de klant doet een verzoek aan de controller [Faces Servlet]. Deze verwerkt alle verzoeken van klanten. Dit is de toegangspoort tot de applicatie. Dit is de <b>C </b>van MVC.
+  </li>
+  <li><b>antwoord </b>– de <b>C-controller </b>vraagt de geselecteerde pagina JSF om zichzelf weer te geven. Dit is de weergave, de <b>V </b>van MVC. De pagina JSF gebruikt een <b>M-sjabloon </b>om de dynamische delen van het antwoord te initialiseren dat naar de klant moet worden verzonden. Dit sjabloon is een Java-klasse die een beroep kan doen op de laag [métier] [4a] om de weergave <b>V</b> te voorzien van de gegevens die deze nodig heeft.
+  </li>
+</ol>
+
+<p>Als het verzoek wordt gedaan met een <strong>POST</strong>, worden er twee extra stappen ingevoegd tussen het verzoek en het antwoord:</p>
+<ol>
+  <li><b>verzoek </b>– de browser van de klant doet een verzoek aan de controller [Faces Servlet].
+  </li>
+  <li><b>verwerking </b>– de controller <b>C </b>verwerkt dit verzoek. Een verzoek POST gaat namelijk gepaard met gegevens die moeten worden verwerkt. Hiervoor maakt de controller gebruik van applicatiespecifieke gebeurtenisverwerkers die zijn vastgelegd in [2a]. Deze handlers kunnen de bedrijfslaag [2b] nodig hebben. De event handler kan genoodzaakt zijn bepaalde M-modellen [2c] bij te werken. Zodra het verzoek van de klant is verwerkt, kan dit verschillende reacties oproepen. Een klassiek voorbeeld is:
+    <ul>
+      <li>een foutpagina als het verzoek niet correct kon worden verwerkt
+      </li>
+      <li>een bevestigingspagina in het tegenovergestelde geval
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<p>De gebeurtenisverwerker retourneert aan de controller [Faces Servlet] een resultaat in de vorm van een tekenreeks, <strong>de</strong> zogenaamde <strong>navigatiesleutel</strong>.</p>
+<ol start="40">
+  <li><b>navigatie </b>– de controller kiest de pagina JSF (= weergave) die naar de klant moet worden verzonden. Deze keuze wordt gemaakt op basis van de navigatiesleutel die door de gebeurtenisverwerker is teruggestuurd.
+  </li>
+  <li><b>antwoord </b>– de gekozen pagina JSF stuurt het antwoord naar de klant. Deze pagina gebruikt haar <b>M-sjabloon </b>om de dynamische delen te initialiseren. Dit sjabloon kan op zijn beurt weer een beroep doen op de laag [métier] [4a] om de pagina JSF te voorzien van de gegevens die deze nodig heeft.
+  </li>
+</ol>
+
+<p>In een project JSF:</p>
+<ul>
+  <li>is de controller <b>C </b>de servlet [javax.faces.webapp.FacesServlet]. Deze bevindt zich in de bibliotheek [jsf-api.jar].
+  </li>
+  <li>De weergaven <b>V </b>worden geïmplementeerd door pagina&#x27;s JSF.
+  </li>
+  <li>De modellen <b>M </b>en de <b>gebeurtenishandlers </b>worden geïmplementeerd door Java-klassen die vaak „backing beans“ worden genoemd.
+  </li>
+  <li>In de versies JSF en 1.x worden de definities van de beans en de <b>regels voor het navigeren </b>van de ene pagina naar de andere vastgelegd in het bestand [faces-config.xml]. Daarin staan de lijst met weergaven en de regels voor de overgang van de ene naar de andere. Vanaf versie JSF 2 kunnen de definities van de beans worden gemaakt met behulp van annotaties en kunnen de overgangen tussen pagina&#x27;s &#x27;hard&#x27; in de code van de beans worden vastgelegd.
+  </li>
+</ul>
+
+<p><span id="refheading87545112820228" name="refheading87545112820228" class="odt-bookmark-anchor"></span></p>
+<h2 id="102-werking-van-de-applicatie">10.2. <span style="color: #4f81bd">Werking van de applicatie</span></h2>
+<p>Wanneer de applicatie voor het eerst wordt opgevraagd, verschijnt de volgende pagina:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000004440000019A7707A90B.png" width="546" height="205" style="display:inline-block; margin:4px;width:14.446cm;height:5.424cm;" class="odt-zoomable" data-zoom-src="images/10000000000004440000019A7707A90B.png" /></td></tr></table>
+
+<p>Vul vervolgens het formulier in en vraag het salaris op:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/1000000000000416000000E0656D40DC.png" width="523" height="112" style="display:inline-block; margin:4px;width:13.838cm;height:2.963cm;" class="odt-zoomable" data-zoom-src="images/1000000000000416000000E0656D40DC.png" /></td></tr></table>
+
+<p>Je krijgt het volgende resultaat te zien:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/1000000000000408000003ADBE48828A.png" width="516" height="471" style="display:inline-block; margin:4px;width:13.653cm;height:12.45cm;" class="odt-zoomable" data-zoom-src="images/1000000000000408000003ADBE48828A.png" /></td></tr></table>
+
+<p>Deze versie berekent een fictief salaris. Let niet op de inhoud van de pagina, maar op de opmaak ervan. Wanneer je de knop [Raz] gebruikt, ga je terug naar de pagina [A].</p>
+<p>Foutieve invoer wordt gemarkeerd, zoals in het volgende voorbeeld te zien is:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/1000000000000446000000F985EF9422.png" width="547" height="125" style="display:inline-block; margin:4px;width:14.473cm;height:3.295cm;" class="odt-zoomable" data-zoom-src="images/1000000000000446000000F985EF9422.png" /></td></tr></table>
+
+<p><span id="refheading87547112820228" name="refheading87547112820228" class="odt-bookmark-anchor"></span></p>
+<h2 id="103-het-netbeans-project">10.3. <span style="color: #4f81bd">Het NetBeans-project</span></h2>
+<p>We gaan een eerste versie van de applicatie bouwen waarin de laag [métier] wordt gesimuleerd. We zullen de volgende architectuur hanteren:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000003DD00000163BE3540CD.png" width="495" height="178" style="display:inline-block; margin:4px;width:13.085cm;height:4.697cm;" class="odt-zoomable" data-zoom-src="images/10000000000003DD00000163BE3540CD.png" /></td></tr></table>
+
+<p>Wanneer de gebeurtenisverwerkers of de modellen gegevens opvragen bij de laag [métier] [2b, 4a], zal deze hen fictieve gegevens verstrekken. Het doel is om een weblaag te verkrijgen die correct reageert op verzoeken van de gebruiker. Zodra dit is bereikt, hoeven we alleen nog maar de in paragraaf<a href="versie-3-porting-van-de-applicatie-pam-naar-een-glassfish-applicatieserver.html#serveur-ejb-sunas9"><u><span style="color: #0563c1"> 7.1</span></u></a> ontwikkelde serverlaag te installeren:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000047500000166CB22B6C6.png" width="571" height="179" style="display:inline-block; margin:4px;width:15.095cm;height:4.736cm;" class="odt-zoomable" data-zoom-src="images/100000000000047500000166CB22B6C6.png" /></td></tr></table>
+
+<p>Dit wordt versie 2 van de webversie van onze applicatie PAM.</p>
+<p>Het NetBeans-project van versie 1 is het volgende Maven-project:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000004EA00000268048BD977.png" width="629" height="308" style="display:inline-block; margin:4px;width:16.642cm;height:8.149cm;" class="odt-zoomable" data-zoom-src="images/10000000000004EA00000268048BD977.png" /></td></tr></table>
+
+<ul>
+  <li>in [1], de configuratiebestanden
+  </li>
+  <li>in [2], de pagina&#x27;s in XHTML en het stylesheet
+  </li>
+  <li>in [3], de klassen van de laag in [web]
+  </li>
+  <li>in [4], de objecten die worden uitgewisseld tussen de laag [web] en de laag [métier] en de laag [métier] zelf
+  </li>
+  <li>in [5], het berichtenbestand voor de internationalisering van de applicatie
+  </li>
+  <li>in [6], de afhankelijkheden van de applicatie
+  </li>
+</ul>
+
+<p>We zullen enkele van deze elementen nader bekijken.</p>
+<p><span id="refheading87549112820228" name="refheading87549112820228" class="odt-bookmark-anchor"></span></p>
+<h3 id="1031-de-configuratiebestanden">10.3.1. <span style="color: #4f81bd">De configuratiebestanden</span></h3>
+<p>Het bestand [web.xml] wordt standaard door NetBeans gegenereerd en bevat bovendien de configuratie van een uitzonderingspagina:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span>
+<span class="normal"><a href="#__codelineno-0-12">12</a></span>
+<span class="normal"><a href="#__codelineno-0-13">13</a></span>
+<span class="normal"><a href="#__codelineno-0-14">14</a></span>
+<span class="normal"><a href="#__codelineno-0-15">15</a></span>
+<span class="normal"><a href="#__codelineno-0-16">16</a></span>
+<span class="normal"><a href="#__codelineno-0-17">17</a></span>
+<span class="normal"><a href="#__codelineno-0-18">18</a></span>
+<span class="normal"><a href="#__codelineno-0-19">19</a></span>
+<span class="normal"><a href="#__codelineno-0-20">20</a></span>
+<span class="normal"><a href="#__codelineno-0-21">21</a></span>
+<span class="normal"><a href="#__codelineno-0-22">22</a></span>
+<span class="normal"><a href="#__codelineno-0-23">23</a></span>
+<span class="normal"><a href="#__codelineno-0-24">24</a></span>
+<span class="normal"><a href="#__codelineno-0-25">25</a></span>
+<span class="normal"><a href="#__codelineno-0-26">26</a></span>
+<span class="normal"><a href="#__codelineno-0-27">27</a></span>
+<span class="normal"><a href="#__codelineno-0-28">28</a></span>
+<span class="normal"><a href="#__codelineno-0-29">29</a></span>
+<span class="normal"><a href="#__codelineno-0-30">30</a></span>
+<span class="normal"><a href="#__codelineno-0-31">31</a></span>
+<span class="normal"><a href="#__codelineno-0-32">32</a></span>
+<span class="normal"><a href="#__codelineno-0-33">33</a></span>
+<span class="normal"><a href="#__codelineno-0-34">34</a></span>
+<span class="normal"><a href="#__codelineno-0-35">35</a></span>
+<span class="normal"><a href="#__codelineno-0-36">36</a></span>
+<span class="normal"><a href="#__codelineno-0-37">37</a></span>
+<span class="normal"><a href="#__codelineno-0-38">38</a></span>
+<span class="normal"><a href="#__codelineno-0-39">39</a></span>
+<span class="normal"><a href="#__codelineno-0-40">40</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="nt">&lt;web-app</span><span class="w"> </span><span class="na">version=</span><span class="s">&quot;3.0&quot;</span><span class="w"> </span><span class="na">xmlns=</span><span class="s">&quot;http://java.sun.com/xml/ns/javaee&quot;</span><span class="w"> </span><span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><span class="w"> </span><span class="na">xsi:schemaLocation=</span><span class="s">&quot;http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd&quot;</span><span class="nt">&gt;</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="w">  </span><span class="nt">&lt;context-param&gt;</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="w">    </span><span class="nt">&lt;param-name&gt;</span>javax.faces.STATE_SAVING_METHOD<span class="nt">&lt;/param-name&gt;</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="w">    </span><span class="nt">&lt;param-value&gt;</span>client<span class="nt">&lt;/param-value&gt;</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="w">  </span><span class="nt">&lt;/context-param&gt;</span><span class="w">  </span>
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="w">  </span><span class="nt">&lt;context-param&gt;</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="w">    </span><span class="nt">&lt;param-name&gt;</span>javax.faces.FACELETS_SKIP_COMMENTS<span class="nt">&lt;/param-name&gt;</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="w">    </span><span class="nt">&lt;param-value&gt;</span>true<span class="nt">&lt;/param-value&gt;</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="w">  </span><span class="nt">&lt;/context-param&gt;</span><span class="w"> </span>
+<a id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="w">  </span><span class="nt">&lt;context-param&gt;</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="w">    </span><span class="nt">&lt;param-name&gt;</span>javax.faces.PROJECT_STAGE<span class="nt">&lt;/param-name&gt;</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13"></a><span class="w">    </span><span class="nt">&lt;param-value&gt;</span>Development<span class="nt">&lt;/param-value&gt;</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14"></a><span class="w">  </span><span class="nt">&lt;/context-param&gt;</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15"></a><span class="w">  </span><span class="nt">&lt;servlet&gt;</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16"></a><span class="w">    </span><span class="nt">&lt;servlet-name&gt;</span>Faces<span class="w"> </span>Servlet<span class="nt">&lt;/servlet-name&gt;</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17"></a><span class="w">    </span><span class="nt">&lt;servlet-class&gt;</span>javax.faces.webapp.FacesServlet<span class="nt">&lt;/servlet-class&gt;</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18"></a><span class="w">    </span><span class="nt">&lt;load-on-startup&gt;</span>1<span class="nt">&lt;/load-on-startup&gt;</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19"></a><span class="w">  </span><span class="nt">&lt;/servlet&gt;</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20"></a><span class="w">  </span><span class="nt">&lt;servlet-mapping&gt;</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21"></a><span class="w">    </span><span class="nt">&lt;servlet-name&gt;</span>Faces<span class="w"> </span>Servlet<span class="nt">&lt;/servlet-name&gt;</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22"></a><span class="w">    </span><span class="nt">&lt;url-pattern&gt;</span>/faces/*<span class="nt">&lt;/url-pattern&gt;</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23"></a><span class="w">  </span><span class="nt">&lt;/servlet-mapping&gt;</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24"></a><span class="w">  </span><span class="nt">&lt;session-config&gt;</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25"></a><span class="w">    </span><span class="nt">&lt;session-timeout&gt;</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26"></a><span class="w">      </span>30
+<a id="__codelineno-0-27" name="__codelineno-0-27"></a><span class="w">    </span><span class="nt">&lt;/session-timeout&gt;</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28"></a><span class="w">  </span><span class="nt">&lt;/session-config&gt;</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29"></a><span class="w">  </span><span class="nt">&lt;welcome-file-list&gt;</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30"></a><span class="w">    </span><span class="nt">&lt;welcome-file&gt;</span>faces/index.xhtml<span class="nt">&lt;/welcome-file&gt;</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31"></a><span class="w">  </span><span class="nt">&lt;/welcome-file-list&gt;</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32"></a><span class="w">  </span><span class="nt">&lt;error-page&gt;</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33"></a><span class="w">    </span><span class="nt">&lt;error-code&gt;</span>500<span class="nt">&lt;/error-code&gt;</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34"></a><span class="w">    </span><span class="nt">&lt;location&gt;</span>/faces/exception.xhtml<span class="nt">&lt;/location&gt;</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35"></a><span class="w">  </span><span class="nt">&lt;/error-page&gt;</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36"></a><span class="w">  </span><span class="nt">&lt;error-page&gt;</span>
+<a id="__codelineno-0-37" name="__codelineno-0-37"></a><span class="w">    </span><span class="nt">&lt;exception-type&gt;</span>java.lang.Exception<span class="nt">&lt;/exception-type&gt;</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38"></a><span class="w">    </span><span class="nt">&lt;location&gt;</span>/faces/exception.xhtml<span class="nt">&lt;/location&gt;</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39"></a><span class="w">  </span><span class="nt">&lt;/error-page&gt;</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40"></a><span class="nt">&lt;/web-app&gt;</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+  <li>regel 30: [index.html] is de startpagina van de applicatie
+  </li>
+  <li>regels 32-39: configuratie van de uitzonderingspagina
+  </li>
+</ul>
+
+<p>De pagina [exception.html] is afgeleid van [<a href="https://stahe.github.io/nl-jsf2-pf-pfm-juin-2012/">ref3</a>]. De code ervan is als volgt:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span>
+<span class="normal"><a href="#__codelineno-1-11">11</a></span>
+<span class="normal"><a href="#__codelineno-1-12">12</a></span>
+<span class="normal"><a href="#__codelineno-1-13">13</a></span>
+<span class="normal"><a href="#__codelineno-1-14">14</a></span>
+<span class="normal"><a href="#__codelineno-1-15">15</a></span>
+<span class="normal"><a href="#__codelineno-1-16">16</a></span>
+<span class="normal"><a href="#__codelineno-1-17">17</a></span>
+<span class="normal"><a href="#__codelineno-1-18">18</a></span>
+<span class="normal"><a href="#__codelineno-1-19">19</a></span>
+<span class="normal"><a href="#__codelineno-1-20">20</a></span>
+<span class="normal"><a href="#__codelineno-1-21">21</a></span>
+<span class="normal"><a href="#__codelineno-1-22">22</a></span>
+<span class="normal"><a href="#__codelineno-1-23">23</a></span>
+<span class="normal"><a href="#__codelineno-1-24">24</a></span>
+<span class="normal"><a href="#__codelineno-1-25">25</a></span>
+<span class="normal"><a href="#__codelineno-1-26">26</a></span>
+<span class="normal"><a href="#__codelineno-1-27">27</a></span>
+<span class="normal"><a href="#__codelineno-1-28">28</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="cp">&lt;?xml version=&#39;1.0&#39; encoding=&#39;UTF-8&#39; ?&gt;</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="cp">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="nt">&lt;html</span><span class="w"> </span><span class="na">xmlns=</span><span class="s">&quot;http://www.w3.org/1999/xhtml&quot;</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="w">      </span><span class="na">xmlns:h=</span><span class="s">&quot;http://java.sun.com/jsf/html&quot;</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="w">      </span><span class="na">xmlns:f=</span><span class="s">&quot;http://java.sun.com/jsf/core&quot;</span><span class="nt">&gt;</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="w">  </span><span class="nt">&lt;f:view</span><span class="w"> </span><span class="na">locale=</span><span class="s">&quot;#{changeLocale.locale}&quot;</span><span class="nt">&gt;</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="w">    </span><span class="nt">&lt;h:head&gt;</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="w">      </span><span class="nt">&lt;title&gt;</span>JSF<span class="nt">&lt;/title&gt;</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="w">      </span><span class="nt">&lt;h:outputStylesheet</span><span class="w"> </span><span class="na">library=</span><span class="s">&quot;css&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;styles.css&quot;</span><span class="nt">/&gt;</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="w">    </span><span class="nt">&lt;/h:head&gt;</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12"></a><span class="w">    </span><span class="nt">&lt;h:body</span><span class="w"> </span><span class="na">style=</span><span class="s">&quot;background-image: url(&#39;${request.contextPath}/resources/images/standard.jpg&#39;);&quot;</span><span class="nt">&gt;</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13"></a><span class="w">      </span><span class="nt">&lt;h:form</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;formulaire&quot;</span><span class="nt">&gt;</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="w">        </span><span class="nt">&lt;h3&gt;&lt;h:outputText</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;#{msg[&#39;exception.header&#39;]}&quot;</span><span class="nt">/&gt;&lt;/h3&gt;</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15"></a><span class="w">        </span><span class="nt">&lt;h:panelGrid</span><span class="w"> </span><span class="na">columnClasses=</span><span class="s">&quot;col1,col2&quot;</span><span class="w"> </span><span class="na">columns=</span><span class="s">&quot;2&quot;</span><span class="w"> </span><span class="na">border=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16"></a><span class="w">          </span><span class="nt">&lt;h:outputText</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;#{msg[&#39;exception.httpCode&#39;]}&quot;</span><span class="nt">/&gt;</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17"></a><span class="w">          </span><span class="nt">&lt;h:outputText</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;#{requestScope[&#39;javax.servlet.error.status_code&#39;]}&quot;</span><span class="nt">/&gt;</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18"></a><span class="w">          </span><span class="nt">&lt;h:outputText</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;#{msg[&#39;exception.message&#39;]}&quot;</span><span class="nt">/&gt;</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19"></a><span class="w">          </span><span class="nt">&lt;h:outputText</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;#{requestScope[&#39;javax.servlet.error.exception&#39;]}&quot;</span><span class="nt">/&gt;</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20"></a><span class="w">          </span><span class="nt">&lt;h:outputText</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;#{msg[&#39;exception.requestUri&#39;]}&quot;</span><span class="nt">/&gt;</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21"></a><span class="w">          </span><span class="nt">&lt;h:outputText</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;#{requestScope[&#39;javax.servlet.error.request_uri&#39;]}&quot;</span><span class="nt">/&gt;</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22"></a><span class="w">          </span><span class="nt">&lt;h:outputText</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;#{msg[&#39;exception.servletName&#39;]}&quot;</span><span class="nt">/&gt;</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23"></a><span class="w">          </span><span class="nt">&lt;h:outputText</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;#{requestScope[&#39;javax.servlet.error.servlet_name&#39;]}&quot;</span><span class="nt">/&gt;</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24"></a><span class="w">        </span><span class="nt">&lt;/h:panelGrid&gt;</span>
+<a id="__codelineno-1-25" name="__codelineno-1-25"></a><span class="w">      </span><span class="nt">&lt;/h:form&gt;</span>
+<a id="__codelineno-1-26" name="__codelineno-1-26"></a><span class="w">    </span><span class="nt">&lt;/h:body&gt;</span>
+<a id="__codelineno-1-27" name="__codelineno-1-27"></a><span class="w">  </span><span class="nt">&lt;/f:view&gt;</span>
+<a id="__codelineno-1-28" name="__codelineno-1-28"></a><span class="nt">&lt;/html&gt;</span>
+</code></pre></div></td></tr></table></div>
+<p>Elke uitzondering die niet expliciet door de code van de webapplicatie wordt afgehandeld, leidt tot de weergave van een pagina die lijkt op de onderstaande:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/1000000000000557000000CB293CCEBE.png" width="752" height="111" style="display:inline-block; margin:4px;width:19.89cm;height:2.949cm;" class="odt-zoomable" data-zoom-src="images/1000000000000557000000CB293CCEBE.png" /></td></tr></table>
+
+<p>Het bestand [faces-config.xml] ziet er als volgt uit:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span>
+<span class="normal"><a href="#__codelineno-2-11">11</a></span>
+<span class="normal"><a href="#__codelineno-2-12">12</a></span>
+<span class="normal"><a href="#__codelineno-2-13">13</a></span>
+<span class="normal"><a href="#__codelineno-2-14">14</a></span>
+<span class="normal"><a href="#__codelineno-2-15">15</a></span>
+<span class="normal"><a href="#__codelineno-2-16">16</a></span>
+<span class="normal"><a href="#__codelineno-2-17">17</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="cm">&lt;!-- =========== FULL CONFIGURATION FILE ================================== --&gt;</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="nt">&lt;faces-config</span><span class="w"> </span><span class="na">version=</span><span class="s">&quot;2.0&quot;</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="w">              </span><span class="na">xmlns=</span><span class="s">&quot;http://java.sun.com/xml/ns/javaee&quot;</span><span class="w"> </span>
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="w">              </span><span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><span class="w"> </span>
+<a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="w">              </span><span class="na">xsi:schemaLocation=</span><span class="s">&quot;http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd&quot;</span><span class="nt">&gt;</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7"></a>
+<a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="w">  </span><span class="nt">&lt;application&gt;</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="w">    </span><span class="nt">&lt;resource-bundle&gt;</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="w">      </span><span class="nt">&lt;base-name&gt;</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11"></a><span class="w">        </span>messages
+<a id="__codelineno-2-12" name="__codelineno-2-12"></a><span class="w">      </span><span class="nt">&lt;/base-name&gt;</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13"></a><span class="w">      </span><span class="nt">&lt;var&gt;</span>msg<span class="nt">&lt;/var&gt;</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14"></a><span class="w">    </span><span class="nt">&lt;/resource-bundle&gt;</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15"></a><span class="w">    </span><span class="nt">&lt;message-bundle&gt;</span>messages<span class="nt">&lt;/message-bundle&gt;</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16"></a><span class="w">  </span><span class="nt">&lt;/application&gt;</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17"></a><span class="nt">&lt;/faces-config&gt;</span>
+</code></pre></div></td></tr></table></div>
+<p>Let op de volgende punten:</p>
+<ul>
+  <li>regels 9-14: het bestand [messages.properties] wordt gebruikt voor de internationalisering van de pagina&#x27;s. Het is toegankelijk in de pagina&#x27;s XHTML via de sleutel <b>msg</b>.
+  </li>
+  <li>regel 15: hiermee wordt het bestand [messages.properties] aangewezen als het bestand dat bij voorkeur moet worden doorzocht voor foutmeldingen die worden weergegeven door de tags &lt;h:messages&gt; en &lt;h:message&gt;. Hierdoor kunnen bepaalde standaardfoutmeldingen uit JSF worden overschreven. Deze mogelijkheid wordt hier niet gebruikt.
+  </li>
+</ul>
+
+<p><span id="refheading87551112820228" name="refheading87551112820228" class="odt-bookmark-anchor"></span></p>
+<h3 id="1032-het-stylesheet">10.3.2. <span style="color: #4f81bd">Het stylesheet</span></h3>
+<p>Het bestand [styles.css] ziet er als volgt uit:</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#3f7f7f">.libelle</span><span style="color:#000000">{</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">   background-color: #ccffff;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">   </span><span style="color:#7f007f">font-family</span><span style="color:#000000">: </span><span style="color:#2a00e1">&#x27;Times New Roman&#x27;,Times,serif</span><span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">   </span><span style="color:#7f007f">font-size</span><span style="color:#000000">: </span><span style="color:#2a00e1">14px</span><span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">   </span><span style="color:#7f007f">font-weight</span><span style="color:#000000">: </span><span style="color:#2a00e1">bold</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#3f7f7f">body</span><span style="color:#000000">{</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">   background-color: #ffccff</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#3f7f7f">.error</span><span style="color:#000000">{</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">   color: #ff3333</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#3f7f7f">.info</span><span style="color:#000000">{</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">   background-color: #99cc00</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#3f7f7f">.titreInfos</span><span style="color:#000000">{</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">   background-color: #ffcc00</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+</code></pre></div>
+
+<p>Hier volgen enkele voorbeelden van JSF-code waarin deze stijlen worden gebruikt:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">h:outputText </span><span style="color:#7f007f">value</span><span style="color:#000000">=</span><span style="color:#008080">&quot;#{msg[&#x27;form.infos.employé&#x27;]}&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000"> </span><span style="color:#7f007f">styleClass</span><span style="color:#000000">=</span><span style="color:#2a00ff">&quot;titreInfos&quot;</span><span style="color:#008080">/&gt;</span></span></span>
+</code></pre></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000008E0000002277E3BCDE.png" width="99" height="24" style="display:inline-block; margin:4px;width:2.63cm;height:0.63cm;" class="odt-zoomable" data-zoom-src="images/100000000000008E0000002277E3BCDE.png" /></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">h:panelGrid </span><span style="color:#7f007f">columns</span><span style="color:#000000">=</span><span style="color:#2a00ff">&quot;3&quot; </span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#7f007f">rowClasses</span><span style="color:#000000">=</span><span style="color:#2a00ff">&quot;libelle,info&quot;</span><span style="color:#008080">&gt;</span></span></span>
+</code></pre></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000000E000000033B35F7138.png" width="157" height="36" style="display:inline-block; margin:4px;width:4.15cm;height:0.94cm;" class="odt-zoomable" data-zoom-src="images/10000000000000E000000033B35F7138.png" /></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">h:message </span><span style="color:#7f007f">for</span><span style="color:#000000">=</span><span style="color:#2a00ff">&quot;heuresTravaillées&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#2a00ff"> </span><span style="color:#7f007f">styleClass</span><span style="color:#000000">=</span><span style="color:#2a00ff">&quot;error&quot;</span><span style="color:#008080">/&gt;</span></span></span>
+</code></pre></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000000EC0000004B6A0B1910.png" width="165" height="53" style="display:inline-block; margin:4px;width:4.369cm;height:1.39cm;" class="odt-zoomable" data-zoom-src="images/10000000000000EC0000004B6A0B1910.png" /></td></tr></table>
+
+<p><span id="refheading87553112820228" name="refheading87553112820228" class="odt-bookmark-anchor"></span></p>
+<h3 id="1033-het-berichtenbestand">10.3.3. <span style="color: #4f81bd">Het berichtenbestand</span></h3>
+<p>Het berichtenbestand [messages_fr.properties] ziet er als volgt uit:</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-javascript">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">form.titre=</span><span style="color:#2a00ff">Feuille</span><span style="color:#000000"> </span><span style="color:#2a00ff">de</span><span style="color:#000000"> </span><span style="color:#2a00ff">salaire</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">form.comboEmployes.libell\u00e9=</span><span style="color:#2a00ff">Employ\u00e9</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">form.heuresTravaill\u00e9es.libell\u00e9=</span><span style="color:#2a00ff">Heures</span><span style="color:#000000"> </span><span style="color:#2a00ff">travaill\u00e9es</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">form.joursTravaill\u00e9s.libell\u00e9=</span><span style="color:#2a00ff">Jours</span><span style="color:#000000"> </span><span style="color:#2a00ff">travaill\u00e9s</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">form.heuresTravaill\u00e9es.required=</span><span style="color:#2a00ff">Indiquez</span><span style="color:#000000"> </span><span style="color:#2a00ff">le</span><span style="color:#000000"> </span><span style="color:#2a00ff">nombre</span><span style="color:#000000"> </span><span style="color:#2a00ff">d&#x27;heures</span><span style="color:#000000"> </span><span style="color:#2a00ff">travaill\u00e9es</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">form.heuresTravaill\u00e9es.validation=</span><span style="color:#2a00ff">Donn\u00e9e</span><span style="color:#000000"> </span><span style="color:#2a00ff">incorrecte</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">form.joursTravaill\u00e9s.required=</span><span style="color:#2a00ff">Indiquez</span><span style="color:#000000"> </span><span style="color:#2a00ff">le</span><span style="color:#000000"> </span><span style="color:#2a00ff">nombre</span><span style="color:#000000"> </span><span style="color:#2a00ff">de</span><span style="color:#000000"> </span><span style="color:#2a00ff">jours</span><span style="color:#000000"> </span><span style="color:#2a00ff">travaill\u00e9s</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">form.joursTravaill\u00e9s.validation=</span><span style="color:#2a00ff">Donn\u00e9e</span><span style="color:#000000"> </span><span style="color:#2a00ff">incorrecte</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">form.btnSalaire.libell\u00e9=</span><span style="color:#2a00ff">Salaire</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">form.btnRaz.libell\u00e9=</span><span style="color:#2a00ff">Raz</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">exception.header=</span><span style="color:#2a00ff">L&#x27;exception</span><span style="color:#000000"> </span><span style="color:#2a00ff">suivante</span><span style="color:#000000"> </span><span style="color:#2a00ff">s&#x27;est</span><span style="color:#000000"> </span><span style="color:#2a00ff">produite</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">exception.httpCode=</span><span style="color:#2a00ff">Code</span><span style="color:#000000"> </span><span style="color:#2a00ff">HTTP</span><span style="color:#000000"> </span><span style="color:#2a00ff">de</span><span style="color:#000000"> </span><span style="color:#2a00ff">l&#x27;erreur</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">exception.message=</span><span style="color:#2a00ff">Message</span><span style="color:#000000"> </span><span style="color:#2a00ff">de</span><span style="color:#000000"> </span><span style="color:#2a00ff">l&#x27;exception</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">exception.requestUri=</span><span style="color:#2a00ff">Url</span><span style="color:#000000"> </span><span style="color:#2a00ff">demand\u00e9e</span><span style="color:#000000"> </span><span style="color:#2a00ff">lors</span><span style="color:#000000"> </span><span style="color:#2a00ff">de</span><span style="color:#000000"> </span><span style="color:#2a00ff">l&#x27;erreur</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">exception.servletName=</span><span style="color:#2a00ff">Nom</span><span style="color:#000000"> </span><span style="color:#2a00ff">de</span><span style="color:#000000"> </span><span style="color:#2a00ff">la</span><span style="color:#000000"> </span><span style="color:#2a00ff">servlet</span><span style="color:#000000"> </span><span style="color:#2a00ff">demand\u00e9e</span><span style="color:#000000"> </span><span style="color:#2a00ff">lorsque</span><span style="color:#000000"> </span><span style="color:#2a00ff">l&#x27;erreur</span><span style="color:#000000"> </span><span style="color:#2a00ff">s&#x27;est</span><span style="color:#000000"> </span><span style="color:#2a00ff">produite</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">form.infos.employ\u00e9=</span><span style="color:#2a00ff">Informations</span><span style="color:#000000"> </span><span style="color:#2a00ff">Employ\u00e9</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">form.employe.nom=</span><span style="color:#2a00ff">Nom</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">form.employe.pr\u00e9nom=</span><span style="color:#2a00ff">Pr\u00e9nom</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">form.employe.adresse=</span><span style="color:#2a00ff">Adresse</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">form.employe.ville=</span><span style="color:#2a00ff">Ville</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">form.employe.codePostal=</span><span style="color:#2a00ff">Code</span><span style="color:#000000"> </span><span style="color:#2a00ff">postal</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">form.employe.indice=</span><span style="color:#2a00ff">Indice</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">form.infos.cotisations=</span><span style="color:#2a00ff">Informations</span><span style="color:#000000"> </span><span style="color:#2a00ff">Cotisations</span><span style="color:#000000"> </span><span style="color:#2a00ff">sociales</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">form.cotisations.csgrds=</span><span style="color:#2a00ff">CSGRDS</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">form.cotisations.csgd=</span><span style="color:#2a00ff">CSGD</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">form.cotisations.retraite=</span><span style="color:#2a00ff">Retraite</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">form.cotisations.secu=</span><span style="color:#2a00ff">S\u00e9curit\u00e9</span><span style="color:#000000"> </span><span style="color:#2a00ff">sociale</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">form.infos.indemnites=</span><span style="color:#2a00ff">Informations</span><span style="color:#000000"> </span><span style="color:#2a00ff">Indemnit\u00e9s</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">form.indemnites.salaireHoraire=</span><span style="color:#2a00ff">Salaire</span><span style="color:#000000"> </span><span style="color:#2a00ff">horaire</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">form.indemnites.entretienJour=</span><span style="color:#2a00ff">Entretien</span><span style="color:#000000"> </span><span style="color:#2a00ff">/</span><span style="color:#000000"> </span><span style="color:#2a00ff">Jour</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">form.indemnites.repasJour=</span><span style="color:#2a00ff">Repas</span><span style="color:#000000"> </span><span style="color:#2a00ff">/</span><span style="color:#000000"> </span><span style="color:#2a00ff">Jour</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">form.indemnites.cong\u00e9sPay\u00e9s=</span><span style="color:#2a00ff">Cong\u00e9s</span><span style="color:#000000"> </span><span style="color:#2a00ff">pay\u00e9s</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">form.infos.salaire=</span><span style="color:#2a00ff">Informations</span><span style="color:#000000"> </span><span style="color:#2a00ff">Salaire</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">form.salaire.base=</span><span style="color:#2a00ff">Salaire</span><span style="color:#000000"> </span><span style="color:#2a00ff">de</span><span style="color:#000000"> </span><span style="color:#2a00ff">base</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">form.salaire.cotisationsSociales=</span><span style="color:#2a00ff">Cotisations</span><span style="color:#000000"> </span><span style="color:#2a00ff">sociales</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">form.salaire.entretien=</span><span style="color:#2a00ff">Indemnit\u00e9s</span><span style="color:#000000"> </span><span style="color:#2a00ff">d&#x27;entretien</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">form.salaire.repas=</span><span style="color:#2a00ff">Indemnit\u00e9s</span><span style="color:#000000"> </span><span style="color:#2a00ff">de</span><span style="color:#000000"> </span><span style="color:#2a00ff">repas</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">form.salaire.net=</span><span style="color:#2a00ff">Salaire</span><span style="color:#000000"> </span><span style="color:#2a00ff">net</span></span></span>
+</code></pre></div>
+
+<p>Deze berichten worden allemaal gebruikt op de pagina [index.xhtml], met uitzondering van die op de regels 11-15, die worden gebruikt op de pagina [exception.xhtml].</p>
+<p><span id="refheading217526813040411" name="refheading217526813040411" class="odt-bookmark-anchor"></span></p>
+<h3 id="1034-het-bereik-van-de-beans">10.3.4. <span style="color: #4f81bd">Het bereik van de beans</span></h3>
+<p>De bean [web.forms.Form] heeft een bereik <strong>op verzoek</strong>:</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-java">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">import</span><span style="color:#000000"> java.io.Serializable;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">import</span><span style="color:#000000"> javax.faces.bean.ManagedBean;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">import</span><span style="color:#000000"> javax.faces.bean.RequestScoped;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#646464">@</span><span style="color:#000000">ManagedBean</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#646464">@</span><span style="color:#000000">RequestScoped</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">class</span><span style="color:#000000"> Form </span><span style="font-weight:bold;color:#7f0055">implements</span><span style="color:#000000"> Serializable {</span></span></span>
+</code></pre></div>
+
+<p>De bean [web.utils.ChangeLocale] heeft een bereik <strong>op applicatieniveau</strong>:</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-java">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">package</span><span style="color:#000000"> web.utils;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">import</span><span style="color:#000000"> java.io.Serializable;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">import</span><span style="color:#000000"> javax.faces.bean.ManagedBean;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">import</span><span style="color:#000000"> javax.faces.bean.SessionScoped;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#646464">@</span><span style="color:#000000">ManagedBean</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#646464">@</span><span style="color:#000000">SessionScoped</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">class</span><span style="color:#000000"> ChangeLocale </span><span style="font-weight:bold;color:#7f0055">implements</span><span style="color:#000000"> Serializable{</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#000000">// de taal van de pagina&#x27;s</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">  </span><span style="font-weight:bold;color:#7f0055">private</span><span style="color:#000000"> String locale=</span><span style="color:#2a00ff">&quot;fr&quot;</span><span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">  </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> ChangeLocale() {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">  </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> String setFrenchLocale(){</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    locale=</span><span style="color:#2a00ff">&quot;fr&quot;</span><span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">return</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">null</span><span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">  </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> String setEnglishLocale(){</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    locale=</span><span style="color:#2a00ff">&quot;en&quot;</span><span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">return</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">null</span><span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">  </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> String getLocale() {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">return</span><span style="color:#000000"> locale;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">  </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">void</span><span style="color:#000000"> setLocale(String locale) {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">this</span><span style="color:#000000">.locale = locale;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+</code></pre></div>
+
+<p><span id="refheading87555112820228" name="refheading87555112820228" class="odt-bookmark-anchor"></span></p>
+<h3 id="1035-de-laag-metier">10.3.5. <span style="color: #4f81bd"><strong>De laag [métier]</strong></span></h3>
+<p>De laag [métier] implementeert de volgende interface <em>IMetierLocal</em>:</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-java">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">package</span><span style="color:#000000"> metier;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">import</span><span style="color:#000000"> java.util.List;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">import</span><span style="color:#000000"> javax.ejb.Local;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">import</span><span style="color:#000000"> jpa.Employe;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#646464">@</span><span style="color:#000000">Local</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">interface</span><span style="color:#000000"> IMetierLocal {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#000000">// loonstrook opvragen</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">  FeuilleSalaire calculerFeuilleSalaire(String SS, </span><span style="font-weight:bold;color:#7f0055">double</span><span style="color:#000000"> nbHeuresTravaillées, </span><span style="font-weight:bold;color:#7f0055">int</span><span style="color:#000000"> nbJoursTravaillés );</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#000000">// lijst met werknemers</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  List&lt;Employe&gt; findAllEmployes();</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+</code></pre></div>
+
+<p>Deze interface wordt gebruikt in het servergedeelte van de client/server-toepassing die in paragraaf<a href="versie-3-porting-van-de-applicatie-pam-naar-een-glassfish-applicatieserver.html#serveur-ejb-sunas9"><u><span style="color: #0563c1"> 7.1</span></u></a> wordt beschreven.</p>
+<p>De klasse <em>Metier</em>, die we gaan gebruiken om de laag [web] te testen, implementeert deze interface als volgt:</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-java">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">package</span><span style="color:#000000"> metier;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">...</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">class</span><span style="color:#000000"> Metier </span><span style="font-weight:bold;color:#7f0055">implements</span><span style="color:#000000"> IMetierLocal {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#000000">// werknemerswoordenboek geïndexeerd op nummer SS</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">  </span><span style="font-weight:bold;color:#7f0055">private</span><span style="color:#000000"> Map&lt;String,Employe&gt; hashEmployes=</span><span style="font-weight:bold;color:#7f0055">new</span><span style="color:#000000"> HashMap&lt;String,Employe&gt;();</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#000000">// lijst van werknemers </span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#000000">  </span><span style="font-weight:bold;color:#7f0055">private</span><span style="color:#000000"> List&lt;Employe&gt; listEmployes;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#000000">// loonstrook opvragen</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">  </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> FeuilleSalaire calculerFeuilleSalaire(String SS,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">double</span><span style="color:#000000"> nbHeuresTravaillées, </span><span style="font-weight:bold;color:#7f0055">int</span><span style="color:#000000"> nbJoursTravaillés) {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000">// de medewerker met nr. SS ophalen</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    Employe e=hashEmployes.get(SS);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000">// een fictieve loonstrook genereren</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">return</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">new</span><span style="color:#000000"> FeuilleSalaire(e,</span><span style="font-weight:bold;color:#7f0055">new</span><span style="color:#000000"> Cotisation(3.49,6.15,9.39,7.88),</span><span style="font-weight:bold;color:#7f0055">new</span><span style="color:#000000"> ElementsSalaire(100,100,100,100,100));</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#000000">// lijst met werknemers</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">  </span><span style="font-weight:bold;color:#7f0055">public</span><span style="color:#000000"> List&lt;Employe&gt; findAllEmployes() {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">if</span><span style="color:#000000">(listEmployes==</span><span style="font-weight:bold;color:#7f0055">null</span><span style="color:#000000">){</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      <span style="color:#000000">// een lijst met twee werknemers aanmaken</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">      listEmployes=</span><span style="font-weight:bold;color:#7f0055">new</span><span style="color:#000000"> ArrayList&lt;Employe&gt;();</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">      listEmployes.add(</span><span style="font-weight:bold;color:#7f0055">new</span><span style="color:#000000"> Employe(</span><span style="color:#2a00ff">&quot;254104940426058&quot;</span><span style="color:#000000">,</span><span style="color:#2a00ff">&quot;Jouveinal&quot;</span><span style="color:#000000">,</span><span style="color:#2a00ff">&quot;Marie&quot;</span><span style="color:#000000">,</span><span style="color:#2a00ff">&quot;5 rue des oiseaux&quot;</span><span style="color:#000000">,</span><span style="color:#2a00ff">&quot;St Corentin&quot;</span><span style="color:#000000">,</span><span style="color:#2a00ff">&quot;49203&quot;</span><span style="color:#000000">,</span><span style="font-weight:bold;color:#7f0055">new</span><span style="color:#000000"> Indemnite(2,2.1,2.1,3.1,15)));</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">      listEmployes.add(</span><span style="font-weight:bold;color:#7f0055">new</span><span style="color:#000000"> Employe(</span><span style="color:#2a00ff">&quot;260124402111742&quot;</span><span style="color:#000000">,</span><span style="color:#2a00ff">&quot;Laverti&quot;</span><span style="color:#000000">,</span><span style="color:#2a00ff">&quot;Justine&quot;</span><span style="color:#000000">,</span><span style="color:#2a00ff">&quot;La brûlerie&quot;</span><span style="color:#000000">,</span><span style="color:#2a00ff">&quot;St Marcel&quot;</span><span style="color:#000000">,</span><span style="color:#2a00ff">&quot;49014&quot;</span><span style="color:#000000">,</span><span style="font-weight:bold;color:#7f0055">new</span><span style="color:#000000"> Indemnite(1,1.93,2,3,12)));</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      <span style="color:#000000">// werknemerswoordenboek geïndexeerd op nummer SS</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">      </span><span style="font-weight:bold;color:#7f0055">for</span><span style="color:#000000">(Employe e:listEmployes){</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        hashEmployes.put(e.getSS(),e);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000">// de lijst met werknemers wordt weergegeven</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">return</span><span style="color:#000000"> listEmployes;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+</code></pre></div>
+
+<p>We laten het aan de lezer over om deze code te ontcijferen. Let op de gebruikte methode: om te voorkomen dat we het EJB-gedeelte van de applicatie hoeven te implementeren, simuleren we de laag [métier]. Zodra de laag [web] als correct is aangemerkt, kunnen we deze vervangen door de daadwerkelijke laag [métier].</p>
+<p><span id="refheading87557112820228" name="refheading87557112820228" class="odt-bookmark-anchor"></span></p>
+<h2 id="104-het-formulier-indexxhtml-en-het-bijbehorende-sjabloon-formjava">10.4. <span style="color: #4f81bd">Het formulier [index.xhtml] en het bijbehorende sjabloon [Form.java]</span></h2>
+<p>We bouwen nu de pagina XHTML van het formulier en het bijbehorende sjabloon.</p>
+<p><strong>Aanbevolen lectuur</strong> in [<a href="https://stahe.github.io/nl-jsf2-pf-pfm-juin-2012/">ref3</a>]: </p>
+<ul>
+  <li>voorbeeld nr. 3 (mv-jsf2-03) voor de lijst met tags die in een formulier kunnen worden gebruikt
+  </li>
+  <li>voorbeeld nr. 4 (mv-jsf2-04) voor de door het model gevulde keuzelijsten
+  </li>
+  <li>voorbeeld nr. 6 (mv-jsf2-06) voor het valideren van invoer
+  </li>
+  <li>voorbeeld nr. 7 (mv-jsf2-07) voor het beheer van de knop [Raz]
+  </li>
+</ul>
+
+<p><span id="refheading87559112820228" name="refheading87559112820228" class="odt-bookmark-anchor"></span></p>
+<h3 id="1041-stap-1">10.4.1. <span style="color: #4f81bd">stap 1</span></h3>
+<hr style="border:0; border-top:0.99pt solid #000000; margin:0.75em 0;" data-odt-border="top" />
+<p><strong>Vraag</strong>: Maak het formulier [index.xhtml] en het bijbehorende model [Form.java] die nodig zijn om de volgende pagina te verkrijgen:</p>
+<hr style="border:0; border-top:0.99pt solid #000000; margin:0.75em 0;" data-odt-border="bottom" />
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000036F0000016EAB481B12.png" width="440" height="183" style="display:inline-block; margin:4px;width:11.629cm;height:4.842cm;" class="odt-zoomable" data-zoom-src="images/100000000000036F0000016EAB481B12.png" /></td></tr></table>
+
+<p>De invoercomponenten zijn als volgt:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>n°
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>id</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>type JSF</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>sjabloon</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>rol</b></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>1
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">comboEmployes</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">&lt;h:selectOneMenu&gt;</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">String comboEmployesValue</div><div style="margin:0 0 0.5em 0">List&lt;Medewerker&gt; getEmployes()</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">bevat de lijst met werknemers in de vorm</div><div style="margin:0 0 0.5em 0"> &quot;voornaam achternaam&quot;.</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>2
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">heuresTravaillees</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">&lt;h:inputText&gt;</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">String heuresTravaillées</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">aantal gewerkte uren - werkelijk aantal</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>3
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">joursTravailles</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">&lt;h:inputText&gt;</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">String joursTravaillés</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">aantal gewerkte dagen - geheel getal</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>4
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">btnSalaire</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">&lt;h:commandButton&gt;</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;">&nbsp;</td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">start de loonberekening</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>5
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">btnRaz</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">&lt;h:commandButton&gt;</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;">&nbsp;</td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">zet het formulier terug in de oorspronkelijke staat</div></td></tr></table>
+
+<ul>
+  <li>de methode <i>getEmployes </i>retourneert een lijst met werknemers die wordt opgehaald uit de laag [métier]. De objecten die door de keuzelijst worden weergegeven, hebben als attribuut <b>itemValue </b>het nummer SS van de medewerker en als attribuut <b>itemLabel </b>een tekenreeks bestaande uit de voor- en achternaam van de medewerker.
+  </li>
+  <li>De knoppen [Salaire] en [Raz] zijn voorlopig niet gekoppeld aan gebeurtenishandlers.
+  </li>
+  <li>De geldigheid van de invoer wordt gecontroleerd.
+  </li>
+</ul>
+
+<p><img src="images/1000000000000284000000AF4366AC4B.png" width="451" height="122" style="width:11.929cm;height:3.24cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000284000000AF4366AC4B.png" /></p>
+<p>Test deze versie. Controleer met name of invoerfouten correct worden gemeld.</p>
+<p><strong>Opmerking</strong>: het is belangrijk dat de <strong>id-attributen</strong> van de componenten op de pagina <strong>geen tekens met accenten bevatten</strong>. Met Glassfish 3.1.2 crasht de applicatie hierdoor.</p>
+<p><span id="refheading87561112820228" name="refheading87561112820228" class="odt-bookmark-anchor"></span></p>
+<h3 id="1042-stap-2">10.4.2. <span style="color: #4f81bd">stap 2</span></h3>
+<hr style="border:0; border-top:0.99pt solid #000000; margin:0.75em 0;" data-odt-border="top" />
+<p><strong>Vraag</strong>: vul het formulier [index.xhtml] en het bijbehorende sjabloon [Form.java] in om de volgende pagina te krijgen zodra op de knop [Salaire] is geklikt:</p>
+<hr style="border:0; border-top:0.99pt solid #000000; margin:0.75em 0;" data-odt-border="bottom" />
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/1000000000000387000001AB7EEDEDA2.png" width="452" height="214" style="display:inline-block; margin:4px;width:11.947cm;height:5.65cm;" class="odt-zoomable" data-zoom-src="images/1000000000000387000001AB7EEDEDA2.png" /></td></tr></table>
+
+<p>De knop [Salaire] wordt gekoppeld aan de gebeurtenisverwerker <em>calculerSalaire</em> van het sjabloon. Deze methode maakt gebruik van de methode <em>calculerFeuilleSalaire</em> van de laag [métier]. Deze loonstrook wordt opgesteld voor de werknemer die is geselecteerd in [1].</p>
+<p>In het sjabloon wordt de loonstrook weergegeven door het volgende privéveld:</p>
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">  </span><span style="font-weight:bold;color:#7f0055">private</span><span style="color:#000000"> FeuilleSalaire feuilleSalaire;</span></span></span>
+</code></pre></div>
+
+<p>met de methoden <em>get</em> en <em>set</em>.</p>
+<p>Om de informatie in dit object op te halen, kunnen op de pagina JSF uitdrukkingen zoals de volgende worden geschreven:</p>
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">h:outputText </span><span style="color:#7f007f">value</span><span style="color:#000000">=</span>&quot;#{form.feuilleSalaire.employe.nom}&quot;<span style="color:#008080">/&gt;</span></span></span>
+</code></pre></div>
+
+<p>De waarde van het attribuut <code>**value</code>** wordt als volgt berekend:</p>
+<p><em>[form].getFeuilleSalaire().getEmploye().getNom()</em>, waarbij [form] een instantie van de klasse [Form.java] vertegenwoordigt. De lezer kan nagaan of de hier gebruikte methoden <em>get</em> inderdaad respectievelijk in de klassen [Form], [FeuilleSalaire] en [Employe] voorkomen. Als dat niet het geval zou zijn, zou er bij het evalueren van de uitdrukking een uitzondering worden gegenereerd.</p>
+<p>Test deze nieuwe versie.</p>
+<p><span id="refheading87563112820228" name="refheading87563112820228" class="odt-bookmark-anchor"></span></p>
+<h3 id="1043-stap-3">10.4.3. <span style="color: #4f81bd">stap 3</span></h3>
+<hr style="border:0; border-top:0.99pt solid #000000; margin:0.75em 0;" data-odt-border="top" />
+<p><strong>Vraag</strong>: vul het formulier [index.xhtml] en het bijbehorende sjabloon [Form.java] in om de volgende aanvullende informatie te verkrijgen:</p>
+<hr style="border:0; border-top:0.99pt solid #000000; margin:0.75em 0;" data-odt-border="bottom" />
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000002D80000020845D4ACF3.png" width="364" height="260" style="display:inline-block; margin:4px;width:9.631cm;height:6.879cm;" class="odt-zoomable" data-zoom-src="images/10000000000002D80000020845D4ACF3.png" /></td></tr></table>
+
+<p>We volgen dezelfde werkwijze als eerder. Er is een probleem met het euro-valutateken dat we bijvoorbeeld in [1] hebben. In het kader van een geïnternationaliseerde toepassing zou het beter zijn om het weergaveformaat en het valutateken van de gebruikte <em>locale</em> te hebben (en, de, fr, ...). Dit kan als volgt worden verkregen:</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">          </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">h:outputFormat </span><span style="color:#7f007f">value</span><span style="color:#000000">=</span><span style="color:#2a00ff">&quot;{0,number,currency}&quot;</span><span style="color:#008080">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">f:param </span><span style="color:#7f007f">value</span><span style="color:#000000">=</span>&quot;#{form.feuilleSalaire.employe.indemnite.entretienJour}&quot;<span style="color:#008080">/&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">h:outputFormat</span><span style="color:#008080">&gt;</span></span></span>
+</code></pre></div>
+
+<p>Men had ook kunnen schrijven:</p>
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">          </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">h:outputText </span><span style="color:#7f007f">value</span><span style="color:#000000">=</span><span style="color:#2a00ff">&quot;#{form.feuilleSalaire.employe.indemnite.entretienJour} </span><span style="color:#2a00ff">є</span><span style="color:#2a00ff">&quot;</span><span style="color:#008080">&gt;</span></span></span>
+</code></pre></div>
+
+<p>maar met de locale <em>en_GB</em> (Engels GB) zou de weergave nog steeds in euro&#x27;s zijn, terwijl het pond (£) zou moeten worden gebruikt. Met de tag &lt;<strong>h:outputFormat</strong>&gt; kun je informatie weergeven op basis van de <em>locale</em> van de weergegeven pagina JSF:</p>
+<ul>
+  <li>regel 1: geeft de parameter {0} weer, een getal (number) dat een geldbedrag (currency) vertegenwoordigt
+  </li>
+  <li>regel 2: de tag &lt;<b>f:param</b>&gt; kent een waarde toe aan de parameter {0}. Een tweede tag &lt;f:param&gt; zou een waarde toekennen aan de parameter {1}, enzovoort.
+  </li>
+</ul>
+
+<p><span id="refheading87565112820228" name="refheading87565112820228" class="odt-bookmark-anchor"></span></p>
+<h3 id="1044-stap-4">10.4.4. <span style="color: #4f81bd">stap 4</span></h3>
+<p><strong>Aanbevolen lectuur</strong>: voorbeeld nr. 7 (mv-jsf2-07) in [<a href="https://stahe.github.io/nl-jsf2-pf-pfm-juin-2012/">ref3</a>].</p>
+<hr style="border:0; border-top:0.99pt solid #000000; margin:0.75em 0;" data-odt-border="top" />
+<p><strong>Vraag</strong>: vul het formulier [index.xhtml] en het bijbehorende sjabloon [Form.java] in om de knop [Raz] te beheren.</p>
+<hr style="border:0; border-top:0.99pt solid #000000; margin:0.75em 0;" data-odt-border="bottom" />
+<p>De knop [Raz] zet het formulier terug in de toestand waarin het zich bevond toen het voor het eerst werd opgevraagd via een GET. Hier doen zich verschillende problemen voor. Sommige daarvan zijn uitgelegd in [<a href="https://stahe.github.io/nl-jsf2-pf-pfm-juin-2012/">ref3</a>].</p>
+<p>Het formulier dat door de knop [Raz] wordt weergegeven, is niet het volledige formulier, maar slechts het gedeelte <em>saisie</em> ervan:</p>
+<p><img src="images/100000000000027D0000010C4BD4E908.png" width="446" height="187" style="width:11.8cm;height:4.96cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000027D0000010C4BD4E908.png" /></p>
+<p>Dit resultaat kan worden verkregen met een &lt;<strong>f:subview</strong>&gt;-tag die als volgt wordt gebruikt:</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">      </span><span style="color:#008080">&lt;</span><span style="color:#3f7f7f">f:subview </span><span style="color:#7f007f">id</span><span style="color:#000000">=</span><span style="color:#2a00ff">&quot;viewInfos&quot; </span><span style="color:#7f007f">rendered</span><span style="color:#000000">=</span>&quot;#{form.viewInfosIsRendered}&quot;<span style="color:#008080">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">... la partie du formulaire qu&#x27;on veut pouvoir ne pas afficher</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">&lt;/</span><span style="color:#3f7f7f">f:subview</span><span style="color:#008080">&gt;</span></span></span>
+</code></pre></div>
+
+<p>De tag &lt;<strong>f:subview</strong>&gt; omvat het gehele deel van het formulier dat kan worden weergegeven of verborgen. Elke component kan worden weergegeven of verborgen met behulp van het attribuut <strong>rendered</strong>. Als <em>rendered=&quot;true&quot;</em>, wordt de component weergegeven; als <em>rendered=&quot;false&quot;</em>, wordt deze niet weergegeven. Als het attribuut <em>rendered</em> zijn waarde in het model aanneemt, kan de weergave van de component programmatisch worden geregeld.</p>
+<p>Hierboven wordt de weergave van de weergave <em>viewInfos</em> geregeld met het volgende veld:</p>
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">  </span><span style="font-weight:bold;color:#7f0055">private</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">boolean</span><span style="color:#000000"> </span><span style="color:#0000c0">viewInfosIsRendered</span><span style="color:#000000">;</span></span></span>
+</code></pre></div>
+
+<p>samen met de bijbehorende methoden <em>get</em> en <em>set</em>. De methoden die de klikken op de knoppen [Salaire] en [Raz] afhandelen, zullen deze booleaanse waarde bijwerken, afhankelijk van of de weergave <em>viewInfos</em> al dan niet moet worden weergegeven.</p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner">
+
+      <div>
+        <a href="https://stahe.github.io" target="_blank">
+          https://stahe.github.io
+        </a>
+        <br>
+        Deze cursus-tutorial, geschreven door <strong>Serge Tahé</strong>, wordt aan het publiek ter beschikking gesteld onder de voorwaarden van de
+        <em>Creative Commons Naamsvermelding – Geen commercieel gebruik –
+        Gelijk delen 3.0 ongewijzigd</em>.
+
+      </div>
+
+    </div>
+  </div>
+
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.sections", "navigation.indexes", "navigation.expand", "toc.integrate", "navigation.top"], "search": "assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="javascripts/focus.js"></script>
+      
+    
+  </body>
+</html>

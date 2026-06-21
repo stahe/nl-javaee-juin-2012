@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://stahe.github.io/nl-javaee-juin-2012/sitemap.xml
